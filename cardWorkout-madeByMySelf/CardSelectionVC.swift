@@ -49,6 +49,11 @@ class CardSelectionVC: UIViewController {
         
     }
     
+    @objc func presentRulesVC(){
+        
+        present(RulesVC(), animated: true)
+    }
+    
     
     func configureUI (){
         
@@ -108,6 +113,8 @@ class CardSelectionVC: UIViewController {
     func configureRulesButton(){
         
         view.addSubview(rulesButton)
+        
+        rulesButton.addTarget(self, action: #selector(presentRulesVC), for: .touchUpInside)
         
         
         NSLayoutConstraint.activate([
