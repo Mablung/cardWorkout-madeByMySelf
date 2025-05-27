@@ -11,9 +11,10 @@ class CardSelectionVC: UIViewController {
     
     let cardArea = UIImageView()
     
-    let stopButton = CWButton(color: .red, title: "Stop", cornerStyle: .capsule)
-    let rulesButton = CWButton(color: .blue, title: "Rules", cornerStyle: .medium)
-    let restartButton = CWButton(color: .green, title: "Restart", cornerStyle: .medium)
+    let stopButton = CWButton(color: .systemRed, title: "Stop", cornerStyle: .capsule)
+    let rulesButton = CWButton(color: .systemBlue, title: "Rules", cornerStyle: .medium)
+    let restartButton = CWButton(color: .systemGreen, title: "Restart", cornerStyle: .medium)
+    let whoAmIButton = CWButton(color: .systemOrange, title: "Who Am I?", cornerStyle: .capsule)
     
     let cardDeck: [UIImage] = Deck.allValues
     
@@ -54,37 +55,39 @@ class CardSelectionVC: UIViewController {
         present(RulesVC(), animated: true)
     }
     
+    @objc func presentWhoAmIVC(){
+        
+        present(WhoAmIVC(), animated: true)
+    }
+    
     
     func configureUI (){
-        
-        
         view.backgroundColor = .systemBackground
         configureCardArea()
         configureStopButton()
         configureRestartButton()
         configureRulesButton()
-        
+        configureWhoAmIButton()
     }
     
-    func configureCardArea() {
+    func configureCardArea(){
         view.addSubview(cardArea)
-        
         cardArea.translatesAutoresizingMaskIntoConstraints = false
-        cardArea.image =  UIImage(named:"AS")
+        cardArea.image = UIImage(named: "AS")
+        
         
         NSLayoutConstraint.activate([
-            cardArea.widthAnchor.constraint(equalToConstant: 250),
-            cardArea.heightAnchor.constraint(equalToConstant: 350),
-            cardArea.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            cardArea.centerYAnchor.constraint(equalTo: view.centerYAnchor,constant: -75)
-
+        cardArea.widthAnchor.constraint(equalToConstant: 250),
+        cardArea.heightAnchor.constraint(equalToConstant: 350),
+        cardArea.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+        cardArea.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -75)
+            
         ])
     }
     
     func configureStopButton(){
         view.addSubview(stopButton)
         stopButton.addTarget(self, action: #selector(stopTimer), for: .touchUpInside)
-        
         
         
         NSLayoutConstraint.activate([
@@ -94,7 +97,6 @@ class CardSelectionVC: UIViewController {
             stopButton.topAnchor.constraint(equalTo: cardArea.bottomAnchor, constant: 30)
         ])
     }
-    
     
     func configureRestartButton(){
         view.addSubview(restartButton)
@@ -109,11 +111,8 @@ class CardSelectionVC: UIViewController {
         ])
     }
     
-    
     func configureRulesButton(){
-        
         view.addSubview(rulesButton)
-        
         rulesButton.addTarget(self, action: #selector(presentRulesVC), for: .touchUpInside)
         
         
@@ -125,10 +124,21 @@ class CardSelectionVC: UIViewController {
             
             
         ])
-        
-        
-        
     }
     
+    func configureWhoAmIButton(){
+        view.addSubview(whoAmIButton)
+        whoAmIButton.addTarget(self, action: #selector(presentWhoAmIVC), for: .touchUpInside)
+        
+        
+        NSLayoutConstraint.activate([
+            whoAmIButton.widthAnchor.constraint(equalToConstant: 260),
+            whoAmIButton.heightAnchor.constraint(equalToConstant: 50),
+            whoAmIButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            whoAmIButton.topAnchor.constraint(equalTo: restartButton.bottomAnchor, constant: 30)
+        
+        ])
+        
+    }
     
 }

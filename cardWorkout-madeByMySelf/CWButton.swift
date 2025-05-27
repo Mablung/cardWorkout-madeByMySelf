@@ -34,7 +34,6 @@ class CWButton: UIButton {
 
     }
     
-    
     func configure() {
         self.layer.cornerRadius = 8
         self.layer.masksToBounds = true
